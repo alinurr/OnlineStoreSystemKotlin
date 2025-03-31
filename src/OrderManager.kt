@@ -1,7 +1,9 @@
 import model.product.Product
 
-class OrderManager<T : Product>(order: Order<T>) {
+class OrderManager<T : Product>(val order: Order<T>) {
     fun process(){
-        changeStatus()
+        if (order.status == OrderStatus.CREATED){
+            order.changeStatus(OrderStatus.PROCESSING)
+        }
     }
 }

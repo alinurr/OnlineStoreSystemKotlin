@@ -1,4 +1,6 @@
 package exception
 
-class ItemUnavailableException(item: String) : OrderException("Товар '${item?.name}' отсутствует или недоступен"){
+import model.product.Product
+
+class ItemUnavailableException(itemName: String) : OrderException("Товар '$itemName' отсутствует или недоступен"){
 }
