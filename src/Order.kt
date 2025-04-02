@@ -1,16 +1,19 @@
 import model.product.Product
 
-class Order<T : Product>(val id: Int, val item: T?, var status: OrderStatus) {
-     fun changeStatus(newStatus: OrderStatus){
+open class Order<T : Product>(var id: Int, var item: T?, var status: OrderStatus) {
+     fun changeStatus(newStatus: OrderStatus) {
          val oldStatus = this.status
          this.status = newStatus
          println("Order #<id> ${this.id}: <OLD_STATUS> $oldStatus → <NEW_STATUS> ${this.status}")
-
      }
 
-    protected open fun onStatusChanged() {}
+    protected open fun onStatusChanged(newStatus: OrderStatus){
+        val oldStatus = this.status
+        this.status = newStatus
+        println("Order #<id> ${this.id}: <OLD_STATUS> $oldStatus → <NEW_STATUS> ${this.status}")
+    }
 
     internal fun logInternalState(){
-        println("Order #<id>: item=<item.name>, status=<status>")
+        println("Order #<id> ${this.id}: item=${this.item?.name}, status=${this.status}")
     }
 }
