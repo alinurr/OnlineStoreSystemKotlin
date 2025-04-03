@@ -1,6 +1,6 @@
 import model.product.Product
 
-class PremiumOrder<T : Product>(override var id: Int, override var item : T?, override var status: OrderStatus) :
+class PremiumOrder<T : Product>(id: Int, item : T?, status: OrderStatus) :
     Order<T>(id, item, status){
     override fun onStatusChanged(newStatus: OrderStatus) {
         val oldStatus = this.status
